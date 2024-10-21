@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .email-container {
+            background-color: #ffffff;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            background-color: #007bff;
+            padding: 10px;
+            color: #ffffff;
+            border-radius: 10px 10px 0 0;
+        }
+        .qr-code {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .qr-code img {
+            max-width: 150px;
+        }
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h2>Event Registration Confirmation</h2>
+        </div>
+        <div class="content">
+            <p>Hello <strong>{{ attendee.name }}</strong>,</p>
+            <p>Thank you for registering for our event!</p>
+            <p>Your QR code is below. Please present this code at the event check-in:</p>
+        </div>
+        <div class="qr-code">
+            <img src="cid:qr_code.png" alt="QR Code">
+        </div>
+        <div class="content">
+            <p><strong>Your Information:</strong></p>
+            <p>Name: {{ attendee.name }}</p>
+            <p>Company: {{ attendee.company }}</p>
+        </div>
+    </div>
+</body>
+</html>

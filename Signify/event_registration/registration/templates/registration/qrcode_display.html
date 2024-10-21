@@ -1,0 +1,14 @@
+<!-- templates/registration/qrcode_display.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Successful</title>
+</head>
+<body>
+    <h1>Registration Successful!</h1>
+    <h2>Your QR Code:</h2>
+    <img src="data:image/png;base64,{{ attendee.qr_code_value|b64encode }}" alt="QR Code">
+    <p>Thank you for registering, {{ attendee.name }} from {{ attendee.company }}.</p>
+</body>
+</html>

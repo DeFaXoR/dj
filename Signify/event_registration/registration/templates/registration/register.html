@@ -1,0 +1,109 @@
+{% load static %}  <!-- Add this at the top -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light background for contrast */
+        }
+        .card {
+            border-radius: 1rem; /* Rounded corners for the card */
+        }
+        .card-header {
+            background-color: #fff; /* Bootstrap primary color */
+            color: white;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+        }
+        .btn-primary {
+            background-color: #0056b3; /* Darker primary color */
+        }
+        .logo {
+            max-width: 150px; /* Set the max width for the logo */
+            max-height: 100px; /* Set the max height for the logo */
+            margin-bottom: 15px; /* Adds some space below the logo */
+        }
+        .errorlist {
+            color: red; /* Color for error messages */
+            margin-top: 5px; /* Space between input and error */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-header text-center">
+                        <img src="{% static 'assets/logo.png' %}" alt="Logo" class="logo">
+                        <h2 class="mb-0">Event Registration</h2>
+                    </div>
+                    <div class="card-body">
+                        {% if messages %}
+                            <ul class="messages list-unstyled">
+                                {% for message in messages %}
+                                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                {{ form.name.label_tag }}
+                                {{ form.name }}  
+                                {% if form.name.errors %}
+                                    <ul class="errorlist">
+                                        {% for error in form.name.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </div>
+                            <div class="mb-3">
+                                {{ form.email.label_tag }}
+                                {{ form.email }}  
+                                {% if form.email.errors %}
+                                    <ul class="errorlist">
+                                        {% for error in form.email.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </div>
+                            <div class="mb-3">
+                                {{ form.phone.label_tag }}
+                                {{ form.phone }}  
+                                {% if form.phone.errors %}
+                                    <ul class="errorlist">
+                                        {% for error in form.phone.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </div>
+                            <div class="mb-3">
+                                {{ form.company.label_tag }}
+                                {{ form.company }}  
+                                {% if form.company.errors %}
+                                    <ul class="errorlist">
+                                        {% for error in form.company.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body> 
+</html>
